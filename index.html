@@ -369,6 +369,7 @@ function showLevels(){
   $('#mClose').onclick=hide;
 }
 function loadLevel(n){
+  hide();
   level=n; bottles=genLevel(n); sel=-1; moves=0; history=[]; animating=false;
   layout(); render();
 }
