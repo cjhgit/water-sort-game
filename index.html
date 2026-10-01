@@ -29,20 +29,28 @@ body{
 
 header{
   position:relative;z-index:2;
-  padding:calc(var(--safeT) + 10px) 14px 6px;
-  display:flex;align-items:center;gap:8px;
+  padding:calc(var(--safeT) + 8px) 10px 4px;
+  display:flex;align-items:center;gap:6px;flex-wrap:wrap;
 }
 header h1{font-size:17px;font-weight:800;letter-spacing:.5px;background:linear-gradient(90deg,#8be9ff,#c39bff,#ff9ad5);-webkit-background-clip:text;background-clip:text;color:transparent;margin-right:auto;white-space:nowrap}
+header h1 .ico{display:none}
 .btn{
   border:none;cursor:pointer;color:var(--text);
   background:var(--glass);border:1px solid rgba(255,255,255,.14);
-  border-radius:12px;padding:8px 12px;font-size:13px;font-weight:600;
+  border-radius:12px;padding:8px 10px;font-size:13px;font-weight:600;
   display:inline-flex;align-items:center;gap:5px;backdrop-filter:blur(8px);
-  transition:transform .12s,background .2s;white-space:nowrap;
+  transition:transform .12s,background .2s;white-space:nowrap;flex-shrink:0;
 }
+.btn .lbl{display:inline}
 .btn:active{transform:scale(.93)}
 .btn.primary{background:linear-gradient(135deg,#5b7cfa,#8a5cf6);border-color:transparent;box-shadow:0 4px 18px rgba(110,90,250,.45)}
 .btn:disabled{opacity:.4;pointer-events:none}
+@media (max-width:480px){
+  header{gap:5px;padding-inline:8px;justify-content:center}
+  header h1{font-size:15px;width:100%;text-align:center;margin-right:0}
+  .btn{padding:8px 9px}
+  .btn .lbl{display:none}
+}
 
 #hud{position:relative;z-index:2;display:flex;justify-content:center;gap:16px;padding:4px 10px 8px;font-size:12.5px;color:var(--muted)}
 #hud b{color:var(--text);font-size:14px}
@@ -66,7 +74,8 @@ header h1{font-size:17px;font-weight:800;letter-spacing:.5px;background:linear-g
   display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s}
 #overlay.show{opacity:1;pointer-events:auto}
 .card{
-  width:min(88vw,360px);background:linear-gradient(160deg,#241a52,#161238);
+  width:min(88vw,360px);max-height:86vh;overflow-y:auto;
+  background:linear-gradient(160deg,#241a52,#161238);
   border:1px solid rgba(255,255,255,.16);border-radius:22px;padding:26px 22px;
   text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.6);
   transform:scale(.9);transition:transform .25s cubic-bezier(.34,1.56,.64,1);
@@ -95,11 +104,11 @@ footer{position:relative;z-index:2;text-align:center;font-size:11px;color:rgba(2
 
 <header>
   <h1>🧪 开心倒水</h1>
-  <button class="btn" id="btnUndo" title="撤销">↩️ 撤销</button>
-  <button class="btn" id="btnAdd" title="加一个空瓶">➕ 加瓶</button>
-  <button class="btn" id="btnAnswer" title="自动演示答案">💡 答案</button>
-  <button class="btn" id="btnRestart">🔄 重开</button>
-  <button class="btn primary" id="btnLevels">🗺️ 关卡</button>
+  <button class="btn" id="btnUndo" title="撤销"><span class="ico">↩️</span><span class="lbl">撤销</span></button>
+  <button class="btn" id="btnAdd" title="加一个空瓶"><span class="ico">➕</span><span class="lbl">加瓶</span></button>
+  <button class="btn" id="btnAnswer" title="自动演示答案"><span class="ico">💡</span><span class="lbl">答案</span></button>
+  <button class="btn" id="btnRestart" title="重开本关"><span class="ico">🔄</span><span class="lbl">重开</span></button>
+  <button class="btn primary" id="btnLevels" title="选择关卡"><span class="ico">🗺️</span><span class="lbl">关卡</span></button>
 </header>
 
 <div id="hud"><span>关卡 <b id="uiLevel">1</b></span><span>步数 <b id="uiMoves">0</b></span><span>完成 <b id="uiDone">0</b>/<b id="uiTotal">0</b></span></div>
